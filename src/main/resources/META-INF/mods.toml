@@ -1,0 +1,21 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[1.14.0,)"
+license = "ISC"
+issueTrackerURL = "https://github.com/CorgiTaco/CompactStatusEffects/issues"
+[[mods]]
+modId = "compactstatuseffects"
+version = "1.0"
+displayName = "Compact Status Effects"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/compact-status-effects-forge"
+logoFile = "icon.png"
+credits = "Corgi Taco - Forge Port"
+authors = "HellsingDarge"
+description = '''
+Reduced space consumption of status effects!
+'''
+[[dependencies.compactstatuseffects]]
+modId = "forge"
+mandatory = true
+versionRange = "[33.0.0,)"
+ordering = "NONE"
+side = "CLIENT"

@@ -1,32 +1,32 @@
 package me.hellsingdarge.compactstatuseffects.modules
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import me.hellsingdarge.compactstatuseffects.AnchoredTextRenderer
 import me.hellsingdarge.compactstatuseffects.Utils
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.client.Minecraft
+import net.minecraft.potion.EffectInstance
 import net.minecraft.util.math.MathHelper
 import kotlin.math.max
 
 object HudTimer
 {
-    private val mc: MinecraftClient by lazy { MinecraftClient.getInstance() }
-    private val textRenderer by lazy { AnchoredTextRenderer(mc.textRenderer) }
+    private val mc: Minecraft by lazy { Minecraft.getInstance() }
+    private val textRenderer by lazy { AnchoredTextRenderer(mc.font) }
 
     @JvmStatic
-    fun draw(matrices: MatrixStack, effects: Collection<StatusEffectInstance>)
+    fun draw(matrices: MatrixStack, effects: Collection<EffectInstance>)
     {
         var i = 0
         var j = 0
 
         effects.forEach { inst ->
-            if (inst.shouldShowIcon())
+            if (inst.showIcon())
             {
                 val fontSize = 6
-                var k = mc.window.scaledWidth
+                var k = mc.window.guiScaledWidth
                 var l = 24
 
-                if (inst.effectType.isBeneficial)
+                if (inst.effect.isBeneficial)
                 {
                     k -= 25 * i
                     i++

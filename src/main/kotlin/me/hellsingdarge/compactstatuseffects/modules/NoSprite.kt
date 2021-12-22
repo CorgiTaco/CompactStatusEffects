@@ -1,10 +1,10 @@
 package me.hellsingdarge.compactstatuseffects.modules
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import me.hellsingdarge.compactstatuseffects.Utils
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.potion.EffectInstance
 
-class NoSprite(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<StatusEffectInstance>):
+class NoSprite(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<EffectInstance>):
     DrawModule(matrixStack, uiX, uiY, effects)
 {
     override val width: Int get() = 100
@@ -16,7 +16,7 @@ class NoSprite(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<S
     override fun draw()
     {
         drawBackground { x, y ->
-            drawTexture(matrixStack, x - xOffset, y, 0, 60, width, height)
+            blit(matrixStack, x - xOffset, y, 0, 60, width, height)
         }
 
         drawDescription { x, y, instance ->

@@ -1,11 +1,12 @@
 package me.hellsingdarge.compactstatuseffects.modules
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import me.hellsingdarge.compactstatuseffects.Utils
-import net.minecraft.client.resource.language.I18n
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.client.resources.I18n
+import net.minecraft.potion.EffectInstance
 
-class NoName(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<StatusEffectInstance>):
+
+class NoName(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<EffectInstance>):
     DrawModule(matrixStack, uiX, uiY, effects)
 {
     override val width: Int get() = 33
@@ -17,11 +18,11 @@ class NoName(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<Sta
     override fun draw()
     {
         drawBackground { x, y ->
-            drawTexture(matrixStack, x - xOffset, y, 0, 0, width, height)
+            blit(matrixStack, x - xOffset, y, 0, 0, width, height)
         }
 
         drawSprite { x, y, sprite ->
-            drawSprite(matrixStack, x + 8 - xOffset, y + 7, zOffset, 18, 18, sprite)
+            blit(matrixStack, x + 8 - xOffset, y + 7, blitOffset, 18, 18, sprite)
         }
 
         drawDescription { x, y, instance ->
@@ -35,7 +36,7 @@ class NoName(matrixStack: MatrixStack, uiX: Int, uiY: Int, effects: Iterable<Sta
                 }
                 else
                 {
-                    I18n.translate("enchantment.level." + (instance.amplifier + 1))
+                    I18n.get("enchantment.level." + (instance.amplifier + 1))
                 }
 
                 textRenderer.drawRightAlign(matrixStack, level, x + 30f - xOffset, y + 27f, withShadow = true)

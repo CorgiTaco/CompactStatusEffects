@@ -6,7 +6,8 @@
   "refmap": "compactstatuseffects.refmap.json",
   "client": [
     "AbstractInventoryScreenMixin",
-    "InGameHudMixin"
+    "InGameHudMixin",
+    "MixinClientWorld"
   ],
   "injectors": {
     "defaultRequire": 1

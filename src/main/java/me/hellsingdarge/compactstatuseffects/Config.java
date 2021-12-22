@@ -16,7 +16,11 @@ public class Config {
     private static ModConfig INSTANCE = null;
 
     public static ModConfig getConfig() {
-        if (INSTANCE == null) {
+        return getConfig(false);
+    }
+
+    public static ModConfig getConfig(boolean serialize) {
+        if (INSTANCE == null || serialize) {
             INSTANCE = readConfig();
         }
 
